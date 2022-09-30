@@ -7,10 +7,10 @@ import org.springframework.web.servlet.DispatcherServlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 
-public class CinemaInitializer implements WebApplicationInitializer {
+public class ApplicationInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.register(CinemaConfig.class);
+        context.register(WebMVCConfig.class);
         context.setServletContext(servletContext);
 
         DispatcherServlet dispatcherServlet = new DispatcherServlet(context);

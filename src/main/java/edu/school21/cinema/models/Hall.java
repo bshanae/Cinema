@@ -1,10 +1,26 @@
 package edu.school21.cinema.models;
 
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 
-@Data
+import javax.persistence.*;
+
+@Entity
+@Table(name="halls")
+@NoArgsConstructor
 public class Hall {
-    @NonNull private int serialNumber;
-    @NonNull private int numberOfSeats;
+    @Getter
+    @Setter
+    @Id
+    @GeneratedValue
+    @Column(name="serial_number")
+    private int serialNumber;
+
+    @Getter
+    @Setter
+    @Column(name="number_of_seats")
+    private int numberOfSeats;
+
+    public Hall(int numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
+    }
 }

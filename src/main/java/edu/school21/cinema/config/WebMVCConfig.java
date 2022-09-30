@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 @Configuration
 @ComponentScan("edu.school21.cinema")
 @EnableWebMvc
-public class CinemaConfig extends WebMvcConfigurationSupport {
+public class WebMVCConfig extends WebMvcConfigurationSupport {
     @Bean
     public FreeMarkerViewResolver freeMarkerViewResolver() {
         FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
