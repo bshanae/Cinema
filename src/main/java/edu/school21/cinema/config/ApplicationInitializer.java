@@ -10,7 +10,7 @@ import javax.servlet.ServletRegistration;
 public class ApplicationInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.register(WebMVCConfig.class);
+        context.register(WebConfig.class);
         context.setServletContext(servletContext);
 
         DispatcherServlet dispatcherServlet = new DispatcherServlet(context);
