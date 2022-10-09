@@ -1,6 +1,16 @@
 <html>
 <head>
     <title>Chat WebSocket</title>
+    <style>
+        .container {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"
             integrity="sha512-1QvjE7BtotQjkq8PxLeF6P46gEpBRXuskzIVgjFpekzFVF4yjRgrQvTG1MTOJ3yQgvTteKAcO7DSZI92+u/yZw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -65,29 +75,32 @@
             console.log('Received a message');
 
             let response = document.getElementById('response');
-            let p = document.createElement('p');
-            p.style.wordWrap = 'break-word';
-            p.appendChild(
+
+            let newElement = document.createElement('div');
+            newElement.appendChild(
                 document.createTextNode(
                     messageOutput.senderId + ': ' + messageOutput.body
                 )
             );
-            response.appendChild(p);
+            response.appendChild(newElement);
+
+            response.scrollTop = response.scrollHeight;
         }
 
         window.addEventListener('beforeunload', disconnect, false);
         window.addEventListener('load', connect, false);
     </script>
 </head>
-<div>
-    <div>
+<body>
+<div class='container'>
+    <div id="response" style="overflow-y: scroll; width: 400px; height: 200px; margin-bottom: 50px;">
+        <#list messages as message>
+            <div>${message.senderId}: ${message.body}</div>
+        </#list>
+    </div>
+    <div style="width: 400px;">
         <input type="text" id="message-body" placeholder="Write a message..."/>
         <button id="sendMessage" onclick="sendMessage();">Send</button>
-        <p id="response">
-            <#list messages as message>
-                ${message.senderId}: ${message.body}<br>
-            </#list>
-        </p>
     </div>
 </div>
 </body>
